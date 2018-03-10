@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LazyEye.Monitors;
-using System.Net.NetworkInformation;
 
 namespace LazyEye.Views
 {
@@ -21,11 +20,14 @@ namespace LazyEye.Views
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Subscribes to all relevant events on the ping monitor
+        /// </summary>
+        /// <param name="pingMonitor"></param>
         public void SubscribeToPingMonitor(PingMonitor pingMonitor) 
         {
             pingMonitor.PingReplyRecieved += new EventHandler<PingReplyReceivedEventArgs>(DisplayLastPing);
         }
-
 
         //Delegates for updating the form
         private delegate void DisplayLastPingDeletegate(object sender, PingReplyReceivedEventArgs args);
@@ -33,7 +35,7 @@ namespace LazyEye.Views
         /// <summary>
         /// update anything that is related to the last ping response received
         /// </summary>
-        /// <param name="reply"></param>
+        /// <param name="args">Argument fired by the PingMonitor.PingReplyRecieved event </param>
         private void DisplayLastPing(object sender, PingReplyReceivedEventArgs args)
         {
             if (InvokeRequired)
