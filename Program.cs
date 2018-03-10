@@ -27,7 +27,7 @@ namespace LazyEye
 
             Application.Run(form);
 
-            
+            pm.Stop();
         }
     }
 }
