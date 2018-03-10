@@ -13,6 +13,7 @@ namespace LazyEye.Monitors
     {
         private Thread thread;
         private bool isRunning;
+        private string host = "8.8.8.8";
 
         //Events
         public event EventHandler<PingReplyReceivedEventArgs> PingReplyRecieved;
@@ -20,8 +21,7 @@ namespace LazyEye.Monitors
         private PingReply SendPing()
         {
             Ping pinger = new Ping();
-            PingReply reply = pinger.Send("8.8.8.8");
-            System.Diagnostics.Debug.WriteLine(reply.RoundtripTime);
+            PingReply reply = pinger.Send(host);
             return reply;
         }
 
@@ -31,6 +31,14 @@ namespace LazyEye.Monitors
             isRunning = true;
             thread.Start();
             
+        }
+
+        /// <summary>
+        /// Terminates the thread that is running the monitoring
+        /// </summary>
+        public void Stop()
+        {
+            isRunning = false;
         }
 
         private void Run()
@@ -46,7 +54,6 @@ namespace LazyEye.Monitors
                 {
                     PingReplyRecieved(this, args);
                 }
-
 
                 Thread.Sleep(1000);
             }

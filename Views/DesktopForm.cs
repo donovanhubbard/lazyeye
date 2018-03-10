@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LazyEye.Monitors;
+using System.Net.NetworkInformation;
 
 namespace LazyEye.Views
 {
@@ -22,30 +23,34 @@ namespace LazyEye.Views
 
         public void SubscribeToPingMonitor(PingMonitor pingMonitor) 
         {
-            pingMonitor.PingReplyRecieved += new EventHandler<PingReplyReceivedEventArgs>(PingReplyReceivedHandler);
+            pingMonitor.PingReplyRecieved += new EventHandler<PingReplyReceivedEventArgs>(DisplayLastPing);
         }
 
 
+        //Delegates for updating the form
+        private delegate void DisplayLastPingDeletegate(object sender, PingReplyReceivedEventArgs args);
 
-
-        //Event Subscriptions
-        public void PingReplyReceivedHandler(object sender, PingReplyReceivedEventArgs args)
-        {
-            //lastDelayLabel.Text = args.PingReply.RoundtripTime.ToString();
-            DisplayLastPing(args.PingReply);
-            
-        }
-        private delegate void DisplayLastPingDeletegate(PingReply reply);
-
-        private void DisplayLastPing(PingReply reply)
+        /// <summary>
+        /// update anything that is related to the last ping response received
+        /// </summary>
+        /// <param name="reply"></param>
+        private void DisplayLastPing(object sender, PingReplyReceivedEventArgs args)
         {
             if (InvokeRequired)
             {
-                this.BeginInvoke(new DisplayLastPingDeletegate(DisplayLastPing), reply);
+                this.BeginInvoke(new DisplayLastPingDeletegate(DisplayLastPing), sender, args);
             }
             else
             {
-                this.lastDelayLabel.Text = reply.RoundtripTime.ToString() +"ms";
+                PingReply reply = args.PingReply;
+                if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
+                {
+                    this.lastDelayLabel.Text = reply.RoundtripTime.ToString() + "ms";
+                }
+                else
+                {
+                    this.lastDelayLabel.Text = reply.Status.ToString() ;
+                }
             }
         }
 

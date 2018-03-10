@@ -36,11 +36,11 @@
             // 
             this.lastDelayLabel.AutoSize = true;
             this.lastDelayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastDelayLabel.Location = new System.Drawing.Point(75, 56);
+            this.lastDelayLabel.Location = new System.Drawing.Point(52, 53);
             this.lastDelayLabel.Name = "lastDelayLabel";
-            this.lastDelayLabel.Size = new System.Drawing.Size(66, 24);
+            this.lastDelayLabel.Size = new System.Drawing.Size(120, 24);
             this.lastDelayLabel.TabIndex = 0;
-            this.lastDelayLabel.Text = "label1";
+            this.lastDelayLabel.Text = "initializing...";
             // 
             // label1
             // 
