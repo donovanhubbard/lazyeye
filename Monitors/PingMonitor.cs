@@ -14,6 +14,7 @@ namespace LazyEye.Monitors
         private Thread thread;
         private bool isRunning;
         private string host = "8.8.8.8";
+        private int delay = 1000;
 
         //Events
         public event EventHandler<PingReplyReceivedEventArgs> PingReplyRecieved;
@@ -55,7 +56,7 @@ namespace LazyEye.Monitors
                     PingReplyRecieved(this, args);
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(delay);
             }
         }
 
