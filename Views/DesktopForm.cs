@@ -26,11 +26,32 @@ namespace LazyEye.Views
         }
 
 
+
+
         //Event Subscriptions
         public void PingReplyReceivedHandler(object sender, PingReplyReceivedEventArgs args)
         {
-            lastDelayLabel.Text = args.PingReply.RoundtripTime.ToString();
+            //lastDelayLabel.Text = args.PingReply.RoundtripTime.ToString();
+            DisplayLastPing(args.PingReply);
+            
+        }
+        private delegate void DisplayLastPingDeletegate(PingReply reply);
+
+        private void DisplayLastPing(PingReply reply)
+        {
+            if (InvokeRequired)
+            {
+                this.BeginInvoke(new DisplayLastPingDeletegate(DisplayLastPing), reply);
+            }
+            else
+            {
+                this.lastDelayLabel.Text = reply.RoundtripTime.ToString() +"ms";
+            }
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
