@@ -12,13 +12,15 @@ namespace LazyEye.Monitors
 {
     public class PingMonitor
     {
-       
+        private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private Thread thread;
         private bool isRunning;
-        private string host = "8.8.8.8";
         private int delay = 1000;
         private Queue<PingReply> replyQueue { get; set; }
         private int maxQueueSize = 3;
+
+        public string Host { get; set; }
 
         //Events
         public event EventHandler<PingReplyReceivedEventArgs> PingReplyRecieved;
@@ -26,7 +28,7 @@ namespace LazyEye.Monitors
         private PingReply SendPing()
         {
             Ping pinger = new Ping();
-            PingReply reply = pinger.Send(host);
+            PingReply reply = pinger.Send(Host);
             return reply;
         }
 
