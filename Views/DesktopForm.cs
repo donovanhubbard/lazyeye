@@ -44,14 +44,16 @@ namespace LazyEye.Views
             }
             else
             {
-                PingReply reply = args.PingReply;
-                if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
+                //PingReply reply = args.PingReply;
+                PingReply lastReply = args.ReplyQueue.Last();
+
+                if (lastReply.Status == System.Net.NetworkInformation.IPStatus.Success)
                 {
-                    this.lastDelayLabel.Text = reply.RoundtripTime.ToString() + "ms";
+                    this.lastDelayLabel.Text = lastReply.RoundtripTime.ToString() + "ms";
                 }
                 else
                 {
-                    this.lastDelayLabel.Text = reply.Status.ToString() ;
+                    this.lastDelayLabel.Text = lastReply.Status.ToString() ;
                 }
             }
         }

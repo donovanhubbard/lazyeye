@@ -15,6 +15,8 @@ namespace LazyEye.Monitors
         private bool isRunning;
         private string host = "8.8.8.8";
         private int delay = 1000;
+        private Queue<PingReply> replyQueue { get; set; }
+        private int maxQueueSize = 3;
 
         //Events
         public event EventHandler<PingReplyReceivedEventArgs> PingReplyRecieved;
@@ -28,6 +30,7 @@ namespace LazyEye.Monitors
 
         public void Start()
         {
+            replyQueue = new Queue<PingReply>();
             thread = new Thread(Run);
             isRunning = true;
             thread.Start();
@@ -48,8 +51,15 @@ namespace LazyEye.Monitors
             {
                 PingReply reply = SendPing();
 
+                replyQueue.Enqueue(reply);
+
+                if(replyQueue.Count > maxQueueSize)
+                {
+                    replyQueue.Dequeue();
+                }
+
                 PingReplyReceivedEventArgs args = new PingReplyReceivedEventArgs();
-                args.PingReply = reply;
+                args.ReplyQueue = replyQueue;
 
                 if(PingReplyRecieved != null)
                 {
@@ -69,6 +79,6 @@ namespace LazyEye.Monitors
     //Event Args
     public class PingReplyReceivedEventArgs : EventArgs
     {
-        public PingReply PingReply { get; set; }
+        public Queue<PingReply> ReplyQueue { get; set; }
     }
 }
