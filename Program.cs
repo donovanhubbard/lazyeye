@@ -29,9 +29,11 @@ namespace LazyEye
             pm.Start();
             form.SubscribeToPingMonitor(pm);
 
+            log.Debug("Launching DesktopForm");
             Application.Run(form);
 
             pm.Stop();
+            log.Info("Exiting program");
         }
     }
 }
