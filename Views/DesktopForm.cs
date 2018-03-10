@@ -14,9 +14,11 @@ namespace LazyEye.Views
 {
     public partial class DesktopForm : Form
     {
+        private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public DesktopForm()
         {
+            log.Debug("Started DesktopForm");
             InitializeComponent();
         }
 

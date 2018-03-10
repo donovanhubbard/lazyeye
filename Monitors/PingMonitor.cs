@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using System.Net.NetworkInformation;
 using System.Threading;
 using LazyEye.Views;
+using log4net;
 
 namespace LazyEye.Monitors
 {
     public class PingMonitor
     {
+       
         private Thread thread;
         private bool isRunning;
         private string host = "8.8.8.8";
