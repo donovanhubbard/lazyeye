@@ -46,17 +46,35 @@ namespace LazyEye.Views
             }
             else
             {
-                //PingReply reply = args.PingReply;
-                PingReply lastReply = args.ReplyQueue.Last();
-
-                if (lastReply.Status == System.Net.NetworkInformation.IPStatus.Success)
+                if (args.PingSession.ContainsSuccess)
                 {
-                    this.lastDelayLabel.Text = lastReply.RoundtripTime.ToString() + "ms";
+                    //PingReply reply = args.PingReply;
+                    PingReply lastReply = args.PingSession.ReplyQueue.Last();
+
+                    if (lastReply.Status == System.Net.NetworkInformation.IPStatus.Success)
+                    {
+                        this.lastDelayLabel.Text = lastReply.RoundtripTime.ToString() + "ms";
+                    }
+                    else
+                    {
+                        this.lastDelayLabel.Text = lastReply.Status.ToString();
+                    }
+
+                    this.avgLabel.Text = args.PingSession.AverageLatency.ToString();
+                    this.maxLabel.Text = args.PingSession.MaxLatency.ToString();
+                    this.minLabel.Text = args.PingSession.MinLatency.ToString();
+                    this.jitterLabel.Text = args.PingSession.Jitter.ToString();
                 }
                 else
                 {
-                    this.lastDelayLabel.Text = lastReply.Status.ToString() ;
+                    this.lastDelayLabel.Text = args.PingSession.ReplyQueue.Last().Status.ToString();
+                    this.avgLabel.Text = "N/A";
+                    this.maxLabel.Text = "N/A";
+                    this.minLabel.Text = "N/A";
+                    this.jitterLabel.Text = "N/A";
                 }
+
+                
             }
         }
 
