@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LazyEye.Views;
 using LazyEye.Monitors;
+using log4net;
 
 namespace LazyEye
 {
@@ -16,6 +17,9 @@ namespace LazyEye
         [STAThread]
         static void Main()
         {
+            log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            log.Info("Starting application");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
