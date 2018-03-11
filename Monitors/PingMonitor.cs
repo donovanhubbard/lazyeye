@@ -6,14 +6,20 @@ using System.Threading.Tasks;
 using System.Net.NetworkInformation;
 using System.Threading;
 using LazyEye.Views;
+using log4net;
 
 namespace LazyEye.Monitors
 {
     public class PingMonitor
     {
+        private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private Thread thread;
         private bool isRunning;
-        private string host = "8.8.8.8";
+        private int delay = 1000;
+        private PingSession pingSession;
+
+        public string Host { get; set; }
 
         //Events
         public event EventHandler<PingReplyReceivedEventArgs> PingReplyRecieved;
@@ -21,12 +27,15 @@ namespace LazyEye.Monitors
         private PingReply SendPing()
         {
             Ping pinger = new Ping();
-            PingReply reply = pinger.Send(host);
+            PingReply reply = pinger.Send(Host);
             return reply;
         }
 
         public void Start()
         {
+            pingSession = new PingSession();
+            pingSession.MaxLength = 300;
+
             thread = new Thread(Run);
             isRunning = true;
             thread.Start();
@@ -38,6 +47,7 @@ namespace LazyEye.Monitors
         /// </summary>
         public void Stop()
         {
+            log.Debug("Stopping ping monitor to host " + Host);
             isRunning = false;
         }
 
@@ -47,27 +57,27 @@ namespace LazyEye.Monitors
             {
                 PingReply reply = SendPing();
 
+                pingSession.Add(reply);
+
                 PingReplyReceivedEventArgs args = new PingReplyReceivedEventArgs();
-                args.PingReply = reply;
+                args.PingSession = pingSession;
 
                 if(PingReplyRecieved != null)
                 {
                     PingReplyRecieved(this, args);
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(delay);
             }
+
+            log.Info("PingMonitor to host [" + Host + "] terminated");
         }
-
-
-
-
     }
 
 
     //Event Args
     public class PingReplyReceivedEventArgs : EventArgs
     {
-        public PingReply PingReply { get; set; }
+        public PingSession PingSession{get; set;}
     }
 }

@@ -14,9 +14,11 @@ namespace LazyEye.Views
 {
     public partial class DesktopForm : Form
     {
+        private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public DesktopForm()
         {
+            log.Debug("Started DesktopForm");
             InitializeComponent();
         }
 
@@ -44,15 +46,36 @@ namespace LazyEye.Views
             }
             else
             {
-                PingReply reply = args.PingReply;
-                if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
+                if (args.PingSession.PacketLostPercent < 1)
                 {
-                    this.lastDelayLabel.Text = reply.RoundtripTime.ToString() + "ms";
+                    PingReply lastReply = args.PingSession.ReplyQueue.Last();
+
+                    if (lastReply.Status == System.Net.NetworkInformation.IPStatus.Success)
+                    {
+                        this.lastDelayLabel.Text = lastReply.RoundtripTime.ToString() + "ms";
+                    }
+                    else
+                    {
+                        this.lastDelayLabel.Text = lastReply.Status.ToString();
+                    }
+
+                    this.avgLabel.Text = args.PingSession.AverageLatency.ToString() + " ms";
+                    this.maxLabel.Text = args.PingSession.MaxLatency.ToString() + " ms";
+                    this.minLabel.Text = args.PingSession.MinLatency.ToString() + " ms";
+                    this.jitterLabel.Text = args.PingSession.Jitter.ToString() + " ms";
+                    this.packetLossLabel.Text = args.PingSession.PacketLostPercent.ToString() + "%";
                 }
                 else
                 {
-                    this.lastDelayLabel.Text = reply.Status.ToString() ;
+                    this.lastDelayLabel.Text = args.PingSession.ReplyQueue.Last().Status.ToString();
+                    this.avgLabel.Text = "N/A";
+                    this.maxLabel.Text = "N/A";
+                    this.minLabel.Text = "N/A";
+                    this.jitterLabel.Text = "N/A";
+                    this.packetLossLabel.Text = args.PingSession.PacketLostPercent.ToString() + "%";
                 }
+
+                
             }
         }
 
