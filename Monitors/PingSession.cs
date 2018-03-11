@@ -22,15 +22,9 @@ namespace LazyEye.Monitors
         public long Jitter { get; private set; }
         public int MaxLength { get; set; }
 
-        /// <summary>
-        /// Whether or not any of the PingReplies have been successful
-        /// </summary>
-        public bool ContainsSuccess { get; private set; }
-
         public PingSession()
         {
             ReplyQueue = new Queue<PingReply>();
-            ContainsSuccess = false;
         }
         
         public void Add(PingReply newReply)
@@ -57,19 +51,18 @@ namespace LazyEye.Monitors
         public void ComputeStatistics()
         {
             log.Debug("Starting to compute statistics for " + ReplyQueue.Count + " replies");
-            ContainsSuccess = false;
 
             if (ReplyQueue.Count > 0)
             {
                 MaxLatency = ReplyQueue.Peek().RoundtripTime;
                 MinLatency = MaxLatency;
                 long runningTotal = 0;
+                int lostPacketCount = 0;
 
                 foreach (PingReply reply in ReplyQueue)
                 {
                     if (reply.Status == IPStatus.Success)
                     {
-                        ContainsSuccess = true;
                         if (reply.RoundtripTime < MinLatency)
                         {
                             MinLatency = reply.RoundtripTime;
@@ -80,19 +73,25 @@ namespace LazyEye.Monitors
                         }
                         runningTotal += reply.RoundtripTime;
                     }
+                    else
+                    {
+                        lostPacketCount++;
+                    }
                 }
 
-                if (!ContainsSuccess)
+                if (lostPacketCount == ReplyQueue.Count)
                 {
                     log.Warn("None of the PingReplies in this session have been successfull");
                 }
                 AverageLatency = runningTotal / ReplyQueue.Count;
                 Jitter = MaxLatency - MinLatency;
+                PacketLostPercent = (lostPacketCount / ReplyQueue.Count) *100;
 
                 log.Debug("Min=" + MinLatency);
                 log.Debug("Max=" + MaxLatency);
                 log.Debug("Avg=" + AverageLatency);
                 log.Debug("Jitter=" + Jitter);
+                log.Debug("PacketLoss%=" + PacketLostPercent);
 
             }
             else

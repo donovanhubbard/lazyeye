@@ -39,6 +39,8 @@
             this.Label8 = new System.Windows.Forms.Label();
             this.jitterLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.packetLossLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,6 +139,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.packetLossLabel);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.jitterLabel);
             this.groupBox1.Controls.Add(this.avgLabel);
@@ -147,10 +151,28 @@
             this.groupBox1.Controls.Add(this.Label7);
             this.groupBox1.Location = new System.Drawing.Point(27, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(114, 285);
+            this.groupBox1.Size = new System.Drawing.Size(114, 303);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Session Statistics";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 243);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Packet Loss";
+            // 
+            // packetLossLabel
+            // 
+            this.packetLossLabel.AutoSize = true;
+            this.packetLossLabel.Location = new System.Drawing.Point(27, 266);
+            this.packetLossLabel.Name = "packetLossLabel";
+            this.packetLossLabel.Size = new System.Drawing.Size(60, 13);
+            this.packetLossLabel.TabIndex = 11;
+            this.packetLossLabel.Text = "initializing...";
             // 
             // DesktopForm
             // 
@@ -185,6 +207,8 @@
         private System.Windows.Forms.Label Label8;
         private System.Windows.Forms.Label jitterLabel;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label packetLossLabel;
+        private System.Windows.Forms.Label label3;
     }
 }
 

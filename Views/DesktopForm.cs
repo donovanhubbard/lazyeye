@@ -46,9 +46,8 @@ namespace LazyEye.Views
             }
             else
             {
-                if (args.PingSession.ContainsSuccess)
+                if (args.PingSession.PacketLostPercent < 1)
                 {
-                    //PingReply reply = args.PingReply;
                     PingReply lastReply = args.PingSession.ReplyQueue.Last();
 
                     if (lastReply.Status == System.Net.NetworkInformation.IPStatus.Success)
@@ -60,10 +59,11 @@ namespace LazyEye.Views
                         this.lastDelayLabel.Text = lastReply.Status.ToString();
                     }
 
-                    this.avgLabel.Text = args.PingSession.AverageLatency.ToString();
-                    this.maxLabel.Text = args.PingSession.MaxLatency.ToString();
-                    this.minLabel.Text = args.PingSession.MinLatency.ToString();
-                    this.jitterLabel.Text = args.PingSession.Jitter.ToString();
+                    this.avgLabel.Text = args.PingSession.AverageLatency.ToString() + " ms";
+                    this.maxLabel.Text = args.PingSession.MaxLatency.ToString() + " ms";
+                    this.minLabel.Text = args.PingSession.MinLatency.ToString() + " ms";
+                    this.jitterLabel.Text = args.PingSession.Jitter.ToString() + " ms";
+                    this.packetLossLabel.Text = args.PingSession.PacketLostPercent.ToString() + "%";
                 }
                 else
                 {
@@ -72,6 +72,7 @@ namespace LazyEye.Views
                     this.maxLabel.Text = "N/A";
                     this.minLabel.Text = "N/A";
                     this.jitterLabel.Text = "N/A";
+                    this.packetLossLabel.Text = args.PingSession.PacketLostPercent.ToString() + "%";
                 }
 
                 

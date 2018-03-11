@@ -24,7 +24,7 @@ namespace LazyEye
             Application.SetCompatibleTextRenderingDefault(false);
 
             PingMonitor pm = new PingMonitor();
-            pm.Host = "8.8.8.8";
+            pm.Host = "8.8.8.81";
 
             DesktopForm form = new DesktopForm();
 
