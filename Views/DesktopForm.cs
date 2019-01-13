@@ -72,6 +72,7 @@ namespace LazyEye.Views
                 this.minLabel.Text = pingSession.MinLatency.ToString() + " ms";
                 this.jitterLabel.Text = pingSession.Jitter.ToString() + " ms";
                 this.packetLossLabel.Text = pingSession.PacketLostPercent.ToString() + "%";
+                this.hostLabel.Text = pingSession.Host;
 
             }
             else

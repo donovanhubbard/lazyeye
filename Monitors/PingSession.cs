@@ -21,6 +21,7 @@ namespace LazyEye.Monitors
         public long MinLatency { get; private set; }
         public long Jitter { get; private set; }
         public int MaxLength { get; set; }
+        public string Host { get; set; }
 
         public PingSession()
         {

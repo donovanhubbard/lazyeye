@@ -35,6 +35,7 @@ namespace LazyEye.Monitors
         {
             pingSession = new PingSession();
             pingSession.MaxLength = 25;
+            pingSession.Host = Host;
 
             thread = new Thread(Run);
             isRunning = true;

@@ -23,18 +23,23 @@ namespace LazyEye
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            PingMonitor pm = new PingMonitor();
-            pm.Host = "8.8.8.8";
+            PingMonitor InternetPM = new PingMonitor();
+            InternetPM.Host = "8.8.8.8";
+            InternetPM.Start();
+
+            //PingMonitor GatewayPM = new PingMonitor();
+            //GatewayPM.Host = "192.168.1.1";
+            //GatewayPM.Start();
 
             DesktopForm form = new DesktopForm();
 
-            pm.Start();
-            form.SubscribeToPingMonitor(pm);
+            
+            form.SubscribeToPingMonitor(InternetPM);
 
             log.Debug("Launching DesktopForm");
             Application.Run(form);
 
-            pm.Stop();
+            InternetPM.Stop();
             log.Info("Exiting program");
         }
     }
