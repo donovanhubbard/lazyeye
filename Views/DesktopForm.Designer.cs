@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lastDelayLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,16 +41,18 @@
             this.Label8 = new System.Windows.Forms.Label();
             this.jitterLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.packetLossLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.latencyChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.latencyChart)).BeginInit();
             this.SuspendLayout();
             // 
             // lastDelayLabel
             // 
             this.lastDelayLabel.AutoSize = true;
             this.lastDelayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastDelayLabel.Location = new System.Drawing.Point(199, 131);
+            this.lastDelayLabel.Location = new System.Drawing.Point(200, 57);
             this.lastDelayLabel.Name = "lastDelayLabel";
             this.lastDelayLabel.Size = new System.Drawing.Size(120, 24);
             this.lastDelayLabel.TabIndex = 0;
@@ -58,7 +62,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(170, 99);
+            this.label1.Location = new System.Drawing.Point(171, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(169, 20);
             this.label1.TabIndex = 1;
@@ -156,15 +160,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Session Statistics";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 243);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Packet Loss";
-            // 
             // packetLossLabel
             // 
             this.packetLossLabel.AutoSize = true;
@@ -174,11 +169,35 @@
             this.packetLossLabel.TabIndex = 11;
             this.packetLossLabel.Text = "initializing...";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 243);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Packet Loss";
+            // 
+            // latencyChart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.latencyChart.ChartAreas.Add(chartArea1);
+            this.latencyChart.Location = new System.Drawing.Point(184, 104);
+            this.latencyChart.Name = "latencyChart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series1.Name = "Series1";
+            this.latencyChart.Series.Add(series1);
+            this.latencyChart.Size = new System.Drawing.Size(394, 208);
+            this.latencyChart.TabIndex = 11;
+            this.latencyChart.Text = "latencyChart";
+            // 
             // DesktopForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 360);
+            this.ClientSize = new System.Drawing.Size(634, 360);
+            this.Controls.Add(this.latencyChart);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lastDelayLabel);
@@ -189,6 +208,7 @@
             this.Text = "LazyEye";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.latencyChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,6 +229,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label packetLossLabel;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataVisualization.Charting.Chart latencyChart;
     }
 }
 
