@@ -18,76 +18,115 @@ namespace LazyEye.Views
     {
         private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        public LinkedList<SessionPanel> SessionPanels;
+        public SessionPanel InternetPanel;
+        public SessionPanel GatewayPanel;
+
+        private delegate void UpdateSessionPanelDelegate(SessionPanel sessionPanel, PingSession pingSession);
+
         public DesktopForm()
         {
             log.Debug("Started DesktopForm");
             InitializeComponent();
+
+            InitializePanels();
+
         }
 
-        //Delegates for updating the form
-        private delegate void DisplayLastPingDeletegate(object sender, PingReplyReceivedEventArgs args);
+        private void InitializePanels()
+        {
+            SessionPanels = new LinkedList<SessionPanel>();
 
+            InternetPanel = new SessionPanel();
 
+            InternetPanel.HostLabel = hostLabel;
+            InternetPanel.LastDelayLabel = lastDelayLabel;
+            InternetPanel.AvgLabel = avgLabel;
+            InternetPanel.MaxLabel = maxLabel;
+            InternetPanel.MinLabel = minLabel;
+            InternetPanel.JitterLabel = jitterLabel;
+            InternetPanel.PacketLossLabel = packetLossLabel;
+            InternetPanel.LatencyChart = latencyChart;
+            InternetPanel.ParentForm = this;
+
+            SessionPanels.AddFirst(InternetPanel);
+
+            GatewayPanel = new SessionPanel();
+
+            GatewayPanel.HostLabel = hostLabel2;
+            GatewayPanel.LastDelayLabel = lastDelayLabel2;
+            GatewayPanel.AvgLabel = avgLabel2;
+            GatewayPanel.MaxLabel = maxLabel2;
+            GatewayPanel.MinLabel = minLabel2;
+            GatewayPanel.JitterLabel = jitterLabel2;
+            GatewayPanel.PacketLossLabel = packetLossLabel2;
+            GatewayPanel.LatencyChart = latencyChart2;
+            GatewayPanel.ParentForm = this;
+
+            SessionPanels.AddFirst(GatewayPanel);
+
+        }
+
+        /*
         public void OnPingReceived(object sender, PingReplyReceivedEventArgs eventArgs)
         {
-            DisplayLastPing(sender, eventArgs);
-        }
+            foreach(SessionPanel currentPanel in SessionPanels)
+            {
+                UpdateSessionPanel(InternetPanel, eventArgs.PingSession);
+            }   
+        }*/
 
-
-        /// <summary>
-        /// update anything that is related to the last ping response received
-        /// </summary>
-        /// <param name="args">Argument fired by the PingMonitor.PingReplyRecieved event </param>
-        private void DisplayLastPing(object sender, PingReplyReceivedEventArgs args)
+        public void UpdateSessionPanel(SessionPanel sessionPanel, PingSession pingSession)
         {
             if (InvokeRequired)
             {
-                this.BeginInvoke(new DisplayLastPingDeletegate(DisplayLastPing), sender, args);
+                this.BeginInvoke(new UpdateSessionPanelDelegate(UpdateSessionPanel), sessionPanel, pingSession);
             }
             else
             {
-                DrawLatencyChart(args.PingSession);
-                WriteStatistics(args.PingSession);
+                UpdateStatistics(sessionPanel, pingSession);
+                UpdateLatencyChart(sessionPanel, pingSession);
+                //DrawLatencyChart(sessionPanel, eventArgs.PingSession);
+                //WriteStatistics(eventArgs.PingSession);
             }
         }
 
-        private void WriteStatistics(PingSession pingSession)
+        public void UpdateStatistics(SessionPanel sessionPanel, PingSession pingSession)
         {
-            this.hostLabel.Text = pingSession.Host;
-            this.packetLossLabel.Text = pingSession.PacketLostPercent.ToString() + "%";
+            sessionPanel.HostLabel.Text = pingSession.Host;
+            sessionPanel.PacketLossLabel.Text = pingSession.PacketLostPercent.ToString() + "%";
 
             if (pingSession.PacketLostPercent < 100)
             {
                 ICMPReply lastReply = pingSession.ReplyQueue.Last();
-                
+
                 if (lastReply.Status == System.Net.NetworkInformation.IPStatus.Success)
                 {
-                    this.lastDelayLabel.Text = lastReply.RoundtripTime.ToString() + "ms";
+                    sessionPanel.LastDelayLabel.Text = lastReply.RoundtripTime.ToString() + "ms";
                 }
                 else
                 {
-                    this.lastDelayLabel.Text = lastReply.Status.ToString();
+                    sessionPanel.LastDelayLabel.Text = lastReply.Status.ToString();
                 }
 
-                this.avgLabel.Text = pingSession.AverageLatency.ToString() + " ms";
-                this.maxLabel.Text = pingSession.MaxLatency.ToString() + " ms";
-                this.minLabel.Text = pingSession.MinLatency.ToString() + " ms";
-                this.jitterLabel.Text = pingSession.Jitter.ToString() + " ms";
+                sessionPanel.AvgLabel.Text = pingSession.AverageLatency.ToString() + " ms";
+                sessionPanel.MaxLabel.Text = pingSession.MaxLatency.ToString() + " ms";
+                sessionPanel.MinLabel.Text = pingSession.MinLatency.ToString() + " ms";
+                sessionPanel.JitterLabel.Text = pingSession.Jitter.ToString() + " ms";
             }
             else
             {
-                this.lastDelayLabel.Text = pingSession.ReplyQueue.Last().Status.ToString();
-                this.avgLabel.Text = "N/A";
-                this.maxLabel.Text = "N/A";
-                this.minLabel.Text = "N/A";
-                this.jitterLabel.Text = "N/A";
+                sessionPanel.LastDelayLabel.Text = pingSession.ReplyQueue.Last().Status.ToString();
+                sessionPanel.AvgLabel.Text = "N/A";
+                sessionPanel.MaxLabel.Text = "N/A";
+                sessionPanel.MinLabel.Text = "N/A";
+                sessionPanel.JitterLabel.Text = "N/A";
             }
         }
 
-        private void DrawLatencyChart(PingSession pingSession)
+        private void UpdateLatencyChart(SessionPanel sessionPanel,PingSession pingSession)
         {
-            this.latencyChart.Series.Clear();
-            
+            sessionPanel.LatencyChart.Series.Clear();
 
             var series = new Series();
             series.Name = "latency";
@@ -96,11 +135,9 @@ namespace LazyEye.Views
 
             var chartArea = new ChartArea();
             chartArea.AxisX.LabelStyle.Enabled = false;
-            //chartArea.AxisX.Enabled = false;
-            
 
             List<int> xvals = new List<int>();
-            List<long> yvals= new List<long>();
+            List<long> yvals = new List<long>();
 
             int i = 0;
             foreach (ICMPReply reply in pingSession.ReplyQueue)
@@ -110,18 +147,39 @@ namespace LazyEye.Views
                 yvals.Add(reply.RoundtripTime);
             }
 
-            this.latencyChart.Series.Add(series);
-            //latencyChart.ChartAreas.Add(chartArea);
-            
+            sessionPanel.LatencyChart.Series.Add(series);
 
-            latencyChart.Series["latency"].Points.DataBindXY(xvals, yvals);
-            latencyChart.Invalidate();
-        
+            sessionPanel.LatencyChart.Series["latency"].Points.DataBindXY(xvals, yvals);
+            sessionPanel.LatencyChart.Invalidate();
         }
+    }
 
-        private void label1_Click(object sender, EventArgs e)
+    /// <summary>
+    /// All the form components that display information about a given sessions's ping
+    /// </summary>
+    public class SessionPanel
+    {
+        public Label LastDelayLabel { get; set; }
+        public Label HostLabel { get; set; }
+        public Label AvgLabel { get; set; }
+        public Label MaxLabel { get; set; }
+        public Label MinLabel { get; set; }
+        public Label JitterLabel { get; set; }
+        public Label PacketLossLabel { get; set; }
+
+        public Chart LatencyChart { get; set; }
+
+        public DesktopForm ParentForm { get; set; }
+
+
+
+        public void OnPingReceived(object sender, PingReplyReceivedEventArgs eventArgs)
         {
+
+            ParentForm.UpdateSessionPanel(this, eventArgs.PingSession);
 
         }
     }
+
+
 }
