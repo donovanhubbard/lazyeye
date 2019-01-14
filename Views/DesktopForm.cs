@@ -24,17 +24,15 @@ namespace LazyEye.Views
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Subscribes to all relevant events on the ping monitor
-        /// </summary>
-        /// <param name="pingMonitor"></param>
-        public void SubscribeToPingMonitor(PingMonitor pingMonitor) 
-        {
-            pingMonitor.PingReplyRecieved += new EventHandler<PingReplyReceivedEventArgs>(DisplayLastPing);
-        }
-
         //Delegates for updating the form
         private delegate void DisplayLastPingDeletegate(object sender, PingReplyReceivedEventArgs args);
+
+
+        public void OnPingReceived(object sender, PingReplyReceivedEventArgs eventArgs)
+        {
+            DisplayLastPing(sender, eventArgs);
+        }
+
 
         /// <summary>
         /// update anything that is related to the last ping response received

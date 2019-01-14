@@ -31,14 +31,13 @@ namespace LazyEye
             //GatewayPM.Host = "192.168.1.1";
             //GatewayPM.Start();
 
-            DesktopForm form = new DesktopForm();
+            DesktopForm Form = new DesktopForm();
 
-            
-            form.SubscribeToPingMonitor(InternetPM);
-            //form.SubscribeToPingMonitor(GatewayPM);
+
+            InternetPM.Subscribe(Form.OnPingReceived);
 
             log.Debug("Launching DesktopForm");
-            Application.Run(form);
+            Application.Run(Form);
 
             InternetPM.Stop();
             log.Info("Exiting program");

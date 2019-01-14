@@ -25,6 +25,8 @@ namespace LazyEye.Monitors
         //Events
         public event EventHandler<PingReplyReceivedEventArgs> PingReplyRecieved;
 
+        public delegate void OnPingReplyReceived(object sender, PingReplyReceivedEventArgs reply);
+
         private ICMPReply SendPing()
         {
             Ping pinger = new Ping();
@@ -85,6 +87,21 @@ namespace LazyEye.Monitors
 
             log.Info("PingMonitor to host [" + Host + "] terminated");
         }
+
+        /// <summary>
+        /// Subscribes to all relevant events on the ping monitor
+        /// </summary>
+        /// <param name="pingMonitor"></param>
+        public void Subscribe(OnPingReplyReceived onPingReplyReceived)
+        {
+            PingReplyRecieved += new EventHandler<PingReplyReceivedEventArgs>(onPingReplyReceived);
+        }
+
+        public void Unsubscribe(OnPingReplyReceived onPingReplyReceived)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 
 
