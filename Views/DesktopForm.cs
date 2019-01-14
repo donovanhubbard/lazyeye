@@ -20,6 +20,7 @@ namespace LazyEye.Views
 
         public LinkedList<SessionPanel> SessionPanels;
         public SessionPanel InternetPanel;
+        public SessionPanel GatewayPanel;
 
         private delegate void UpdateSessionPanelDelegate(SessionPanel sessionPanel, PingSession pingSession);
 
@@ -49,6 +50,20 @@ namespace LazyEye.Views
             InternetPanel.ParentForm = this;
 
             SessionPanels.AddFirst(InternetPanel);
+
+            GatewayPanel = new SessionPanel();
+
+            GatewayPanel.HostLabel = hostLabel2;
+            GatewayPanel.LastDelayLabel = lastDelayLabel2;
+            GatewayPanel.AvgLabel = avgLabel2;
+            GatewayPanel.MaxLabel = maxLabel2;
+            GatewayPanel.MinLabel = minLabel2;
+            GatewayPanel.JitterLabel = jitterLabel2;
+            GatewayPanel.PacketLossLabel = packetLossLabel2;
+            GatewayPanel.LatencyChart = latencyChart2;
+            GatewayPanel.ParentForm = this;
+
+            SessionPanels.AddFirst(GatewayPanel);
 
         }
 

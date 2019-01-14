@@ -38,6 +38,7 @@ namespace LazyEye
 
             //InternetPM.Subscribe(Form.OnPingReceived);
             InternetPM.Subscribe(Form.InternetPanel.OnPingReceived);
+            GatewayPM.Subscribe(Form.GatewayPanel.OnPingReceived);
 
             log.Debug("Launching DesktopForm");
             Application.Run(Form);
