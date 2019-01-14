@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using LazyEye.Monitors;
+using LazyEye.Models;
 
 namespace LazyEye.Views
 {
@@ -54,10 +55,13 @@ namespace LazyEye.Views
 
         private void WriteStatistics(PingSession pingSession)
         {
+            this.hostLabel.Text = pingSession.Host;
+            this.packetLossLabel.Text = pingSession.PacketLostPercent.ToString() + "%";
+
             if (pingSession.PacketLostPercent < 100)
             {
-                PingReply lastReply = pingSession.ReplyQueue.Last();
-
+                ICMPReply lastReply = pingSession.ReplyQueue.Last();
+                
                 if (lastReply.Status == System.Net.NetworkInformation.IPStatus.Success)
                 {
                     this.lastDelayLabel.Text = lastReply.RoundtripTime.ToString() + "ms";
@@ -71,9 +75,6 @@ namespace LazyEye.Views
                 this.maxLabel.Text = pingSession.MaxLatency.ToString() + " ms";
                 this.minLabel.Text = pingSession.MinLatency.ToString() + " ms";
                 this.jitterLabel.Text = pingSession.Jitter.ToString() + " ms";
-                this.packetLossLabel.Text = pingSession.PacketLostPercent.ToString() + "%";
-                this.hostLabel.Text = pingSession.Host;
-
             }
             else
             {
@@ -82,7 +83,6 @@ namespace LazyEye.Views
                 this.maxLabel.Text = "N/A";
                 this.minLabel.Text = "N/A";
                 this.jitterLabel.Text = "N/A";
-                this.packetLossLabel.Text = pingSession.PacketLostPercent.ToString() + "%";
             }
         }
 
@@ -101,13 +101,11 @@ namespace LazyEye.Views
             //chartArea.AxisX.Enabled = false;
             
 
-            
-
             List<int> xvals = new List<int>();
             List<long> yvals= new List<long>();
 
             int i = 0;
-            foreach (PingReply reply in pingSession.ReplyQueue)
+            foreach (ICMPReply reply in pingSession.ReplyQueue)
             {
                 xvals.Add(i);
                 i++;

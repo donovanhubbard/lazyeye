@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.NetworkInformation;
+using LazyEye.Models;
 
 namespace LazyEye.Monitors
 {
@@ -14,9 +15,9 @@ namespace LazyEye.Monitors
     {
         private static log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public Queue<PingReply> ReplyQueue { get; private set; }
+        public Queue<ICMPReply> ReplyQueue { get; private set; }
         public long AverageLatency { get; private set; }
-        public float PacketLostPercent { get; private set; }
+        public double PacketLostPercent { get; private set; }
         public long MaxLatency { get; private set; }
         public long MinLatency { get; private set; }
         public long Jitter { get; private set; }
@@ -25,10 +26,10 @@ namespace LazyEye.Monitors
 
         public PingSession()
         {
-            ReplyQueue = new Queue<PingReply>();
+            ReplyQueue = new Queue<ICMPReply>();
         }
         
-        public void Add(PingReply newReply)
+        public void Add(ICMPReply newReply)
         {
             log.Debug("Adding new reply");
             ReplyQueue.Enqueue(newReply);
@@ -51,16 +52,16 @@ namespace LazyEye.Monitors
         /// </summary>
         public void ComputeStatistics()
         {
-            log.Debug("Starting to compute statistics for " + ReplyQueue.Count + " replies");
+            log.Debug("Starting to compute statistics for "+ Host+ " for " + ReplyQueue.Count + " replies");
 
             if (ReplyQueue.Count > 0)
             {
                 MaxLatency = ReplyQueue.Peek().RoundtripTime;
                 MinLatency = MaxLatency;
                 long runningTotal = 0;
-                int lostPacketCount = 0;
+                int errorCount = 0;
 
-                foreach (PingReply reply in ReplyQueue)
+                foreach (ICMPReply reply in ReplyQueue)
                 {
                     if (reply.Status == IPStatus.Success)
                     {
@@ -76,17 +77,13 @@ namespace LazyEye.Monitors
                     }
                     else
                     {
-                        lostPacketCount++;
+                        errorCount++;
                     }
                 }
 
-                if (lostPacketCount == ReplyQueue.Count)
-                {
-                    log.Warn("None of the PingReplies in this session have been successfull");
-                }
                 AverageLatency = runningTotal / ReplyQueue.Count;
                 Jitter = MaxLatency - MinLatency;
-                PacketLostPercent = (lostPacketCount / ReplyQueue.Count) *100;
+                PacketLostPercent = Math.Round(errorCount / (float)ReplyQueue.Count *100,1);
 
                 log.Debug("Min=" + MinLatency);
                 log.Debug("Max=" + MaxLatency);

@@ -35,6 +35,7 @@ namespace LazyEye
 
             
             form.SubscribeToPingMonitor(InternetPM);
+            //form.SubscribeToPingMonitor(GatewayPM);
 
             log.Debug("Launching DesktopForm");
             Application.Run(form);
