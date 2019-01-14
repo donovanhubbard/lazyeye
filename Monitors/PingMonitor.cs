@@ -7,6 +7,7 @@ using System.Net.NetworkInformation;
 using System.Threading;
 using LazyEye.Views;
 using log4net;
+using LazyEye.Models;
 
 namespace LazyEye.Monitors
 {
@@ -24,17 +25,31 @@ namespace LazyEye.Monitors
         //Events
         public event EventHandler<PingReplyReceivedEventArgs> PingReplyRecieved;
 
-        private PingReply SendPing()
+        public delegate void OnPingReplyReceived(object sender, PingReplyReceivedEventArgs reply);
+
+        private ICMPReply SendPing()
         {
             Ping pinger = new Ping();
-            PingReply reply = pinger.Send(Host);
-            return reply;
+            PingReply reply = null;
+            ICMPReply replyWrapper = null;
+            try
+            {
+                reply = pinger.Send(Host);
+                replyWrapper = new ICMPReply(reply);
+            }catch(PingException e)
+            {
+                replyWrapper = new ICMPReply();
+                replyWrapper.Address = System.Net.IPAddress.Parse(Host);
+                replyWrapper.Status = IPStatus.IcmpError;
+            }
+            return replyWrapper;
         }
 
         public void Start()
         {
             pingSession = new PingSession();
-            pingSession.MaxLength = 300;
+            pingSession.MaxLength = 60;
+            pingSession.Host = Host;
 
             thread = new Thread(Run);
             isRunning = true;
@@ -55,7 +70,7 @@ namespace LazyEye.Monitors
         {
             while (isRunning)
             {
-                PingReply reply = SendPing();
+                ICMPReply reply = SendPing();
 
                 pingSession.Add(reply);
 
@@ -72,6 +87,21 @@ namespace LazyEye.Monitors
 
             log.Info("PingMonitor to host [" + Host + "] terminated");
         }
+
+        /// <summary>
+        /// Subscribes to all relevant events on the ping monitor
+        /// </summary>
+        /// <param name="pingMonitor"></param>
+        public void Subscribe(OnPingReplyReceived onPingReplyReceived)
+        {
+            PingReplyRecieved += new EventHandler<PingReplyReceivedEventArgs>(onPingReplyReceived);
+        }
+
+        public void Unsubscribe(OnPingReplyReceived onPingReplyReceived)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 
 

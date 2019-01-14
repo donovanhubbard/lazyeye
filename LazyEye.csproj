@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,7 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Monitors\PingSession.cs" />
+    <Compile Include="Models\ICMPReply.cs" />
+    <Compile Include="Models\PingSession.cs" />
     <Compile Include="Views\DesktopForm.cs">
       <SubType>Form</SubType>
     </Compile>
