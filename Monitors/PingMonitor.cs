@@ -39,6 +39,7 @@ namespace LazyEye.Monitors
             }catch(PingException e)
             {
                 replyWrapper = new ICMPReply();
+                //todo: this throws an exception if it's a hostname instead of an IP address
                 replyWrapper.Address = System.Net.IPAddress.Parse(Host);
                 replyWrapper.Status = IPStatus.IcmpError;
             }
