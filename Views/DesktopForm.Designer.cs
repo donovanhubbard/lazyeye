@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DesktopForm));
             this.lastDelayLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -205,14 +206,14 @@
             // 
             // latencyChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.latencyChart.ChartAreas.Add(chartArea3);
+            chartArea5.Name = "ChartArea1";
+            this.latencyChart.ChartAreas.Add(chartArea5);
             this.latencyChart.Location = new System.Drawing.Point(297, 3);
             this.latencyChart.Name = "latencyChart";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series3.Name = "Series1";
-            this.latencyChart.Series.Add(series3);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series5.Name = "Series1";
+            this.latencyChart.Series.Add(series5);
             this.latencyChart.Size = new System.Drawing.Size(491, 250);
             this.latencyChart.TabIndex = 11;
             this.latencyChart.Text = "latencyChart";
@@ -386,14 +387,14 @@
             // 
             // latencyChart2
             // 
-            chartArea4.Name = "ChartArea1";
-            this.latencyChart2.ChartAreas.Add(chartArea4);
+            chartArea6.Name = "ChartArea1";
+            this.latencyChart2.ChartAreas.Add(chartArea6);
             this.latencyChart2.Location = new System.Drawing.Point(297, 3);
             this.latencyChart2.Name = "latencyChart2";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series4.Name = "Series1";
-            this.latencyChart2.Series.Add(series4);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series6.Name = "Series1";
+            this.latencyChart2.Series.Add(series6);
             this.latencyChart2.Size = new System.Drawing.Size(491, 250);
             this.latencyChart2.TabIndex = 11;
             this.latencyChart2.Text = "chart1";
@@ -436,6 +437,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DesktopForm";
