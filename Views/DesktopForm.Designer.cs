@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DesktopForm));
             this.lastDelayLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -206,14 +206,14 @@
             // 
             // latencyChart
             // 
-            chartArea5.Name = "ChartArea1";
-            this.latencyChart.ChartAreas.Add(chartArea5);
+            chartArea1.Name = "ChartArea1";
+            this.latencyChart.ChartAreas.Add(chartArea1);
             this.latencyChart.Location = new System.Drawing.Point(297, 3);
             this.latencyChart.Name = "latencyChart";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series5.Name = "Series1";
-            this.latencyChart.Series.Add(series5);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series1.Name = "Series1";
+            this.latencyChart.Series.Add(series1);
             this.latencyChart.Size = new System.Drawing.Size(491, 250);
             this.latencyChart.TabIndex = 11;
             this.latencyChart.Text = "latencyChart";
@@ -387,14 +387,14 @@
             // 
             // latencyChart2
             // 
-            chartArea6.Name = "ChartArea1";
-            this.latencyChart2.ChartAreas.Add(chartArea6);
+            chartArea2.Name = "ChartArea1";
+            this.latencyChart2.ChartAreas.Add(chartArea2);
             this.latencyChart2.Location = new System.Drawing.Point(297, 3);
             this.latencyChart2.Name = "latencyChart2";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series6.Name = "Series1";
-            this.latencyChart2.Series.Add(series6);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series2.Name = "Series1";
+            this.latencyChart2.Series.Add(series2);
             this.latencyChart2.Size = new System.Drawing.Size(491, 250);
             this.latencyChart2.TabIndex = 11;
             this.latencyChart2.Text = "chart1";
