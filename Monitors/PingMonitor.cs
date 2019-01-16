@@ -20,7 +20,15 @@ namespace LazyEye.Monitors
         private int delay = 1000;
         private PingSession pingSession;
 
+        /// <summary>
+        /// The IP address to ping. Must be an IP
+        /// </summary>
         public string Host { get; set; }
+
+        /// <summary>
+        /// The friendly name to display to end user. Can be anything
+        /// </summary>
+        public string Title { get; set; }
 
         //Events
         public event EventHandler<PingReplyReceivedEventArgs> PingReplyRecieved;
@@ -51,6 +59,7 @@ namespace LazyEye.Monitors
             pingSession = new PingSession();
             pingSession.MaxLength = 60;
             pingSession.Host = Host;
+            pingSession.Title = Title;
 
             thread = new Thread(Run);
             isRunning = true;

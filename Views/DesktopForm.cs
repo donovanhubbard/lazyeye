@@ -39,6 +39,7 @@ namespace LazyEye.Views
 
             InternetPanel = new SessionPanel();
 
+            InternetPanel.TitleLabel = titleLabel;
             InternetPanel.HostLabel = hostLabel;
             InternetPanel.LastDelayLabel = lastDelayLabel;
             InternetPanel.AvgLabel = avgLabel;
@@ -53,6 +54,7 @@ namespace LazyEye.Views
 
             GatewayPanel = new SessionPanel();
 
+            GatewayPanel.TitleLabel = titleLabel2;
             GatewayPanel.HostLabel = hostLabel2;
             GatewayPanel.LastDelayLabel = lastDelayLabel2;
             GatewayPanel.AvgLabel = avgLabel2;
@@ -67,14 +69,6 @@ namespace LazyEye.Views
 
         }
 
-        /*
-        public void OnPingReceived(object sender, PingReplyReceivedEventArgs eventArgs)
-        {
-            foreach(SessionPanel currentPanel in SessionPanels)
-            {
-                UpdateSessionPanel(InternetPanel, eventArgs.PingSession);
-            }   
-        }*/
 
         public void UpdateSessionPanel(SessionPanel sessionPanel, PingSession pingSession)
         {
@@ -86,14 +80,14 @@ namespace LazyEye.Views
             {
                 UpdateStatistics(sessionPanel, pingSession);
                 UpdateLatencyChart(sessionPanel, pingSession);
-                //DrawLatencyChart(sessionPanel, eventArgs.PingSession);
-                //WriteStatistics(eventArgs.PingSession);
             }
         }
 
         public void UpdateStatistics(SessionPanel sessionPanel, PingSession pingSession)
         {
+            
             sessionPanel.HostLabel.Text = pingSession.Host;
+            sessionPanel.TitleLabel.Text = pingSession.Title;
             sessionPanel.PacketLossLabel.Text = pingSession.PacketLostPercent.ToString() + "%";
 
             if (pingSession.PacketLostPercent < 100)
@@ -159,6 +153,9 @@ namespace LazyEye.Views
     /// </summary>
     public class SessionPanel
     {
+        public PingMonitor Monitor { get; set; }
+
+        public Label TitleLabel { get; set; }
         public Label LastDelayLabel { get; set; }
         public Label HostLabel { get; set; }
         public Label AvgLabel { get; set; }

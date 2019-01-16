@@ -47,11 +47,11 @@
             this.packetLossLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.latencyChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label5 = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.hostLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.titleLabel2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.packetLossLabel2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -88,10 +88,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(121, 126);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(170, 26);
+            this.label1.Size = new System.Drawing.Size(147, 24);
             this.label1.TabIndex = 1;
             this.label1.Text = "Last Response";
             // 
@@ -218,15 +218,15 @@
             this.latencyChart.TabIndex = 11;
             this.latencyChart.Text = "latencyChart";
             // 
-            // label5
+            // titleLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(122, 28);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 26);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Host";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(122, 28);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(52, 24);
+            this.titleLabel.TabIndex = 12;
+            this.titleLabel.Text = "Host";
             // 
             // hostLabel
             // 
@@ -241,7 +241,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.titleLabel);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.latencyChart);
             this.panel1.Controls.Add(this.hostLabel);
@@ -255,7 +255,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.titleLabel2);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.latencyChart2);
             this.panel2.Controls.Add(this.hostLabel2);
@@ -266,15 +266,15 @@
             this.panel2.Size = new System.Drawing.Size(803, 261);
             this.panel2.TabIndex = 15;
             // 
-            // label6
+            // titleLabel2
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(122, 28);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 26);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Host";
+            this.titleLabel2.AutoSize = true;
+            this.titleLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel2.Location = new System.Drawing.Point(122, 28);
+            this.titleLabel2.Name = "titleLabel2";
+            this.titleLabel2.Size = new System.Drawing.Size(52, 24);
+            this.titleLabel2.TabIndex = 12;
+            this.titleLabel2.Text = "Host";
             // 
             // groupBox2
             // 
@@ -412,10 +412,10 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.label20.Location = new System.Drawing.Point(121, 126);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(170, 26);
+            this.label20.Size = new System.Drawing.Size(147, 24);
             this.label20.TabIndex = 1;
             this.label20.Text = "Last Response";
             // 
@@ -472,11 +472,11 @@
         private System.Windows.Forms.Label packetLossLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataVisualization.Charting.Chart latencyChart;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label hostLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label titleLabel2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label packetLossLabel2;
         private System.Windows.Forms.Label label10;

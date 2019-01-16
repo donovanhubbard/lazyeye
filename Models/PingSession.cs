@@ -23,6 +23,7 @@ namespace LazyEye.Monitors
         public long Jitter { get; private set; }
         public int MaxLength { get; set; }
         public string Host { get; set; }
+        public string Title { get; set; }
 
         public PingSession()
         {

@@ -26,10 +26,12 @@ namespace LazyEye
             Application.SetCompatibleTextRenderingDefault(false);
 
             PingMonitor InternetPM = new PingMonitor();
+            InternetPM.Title = "google";
             InternetPM.Host = "8.8.8.8";
             InternetPM.Start();
 
             PingMonitor GatewayPM = new PingMonitor();
+            GatewayPM.Title = "Default Gateway";
             GatewayPM.Host = GetDefaultGateway().ToString();
             GatewayPM.Start();
 
@@ -37,7 +39,9 @@ namespace LazyEye
 
 
             //InternetPM.Subscribe(Form.OnPingReceived);
+            Form.InternetPanel.Monitor = InternetPM;
             InternetPM.Subscribe(Form.InternetPanel.OnPingReceived);
+            Form.GatewayPanel.Monitor = GatewayPM;
             GatewayPM.Subscribe(Form.GatewayPanel.OnPingReceived);
 
             log.Debug("Launching DesktopForm");
