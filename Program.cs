@@ -26,7 +26,7 @@ namespace LazyEye
             Application.SetCompatibleTextRenderingDefault(false);
 
             PingMonitor InternetPM = new PingMonitor();
-            InternetPM.Title = "google";
+            InternetPM.Title = "Google";
             InternetPM.Host = "8.8.8.8";
             InternetPM.Start();
 
