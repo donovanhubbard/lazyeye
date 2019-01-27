@@ -37,38 +37,45 @@ namespace LazyEye.Views
         {
             SessionPanels = new LinkedList<SessionPanel>();
 
-            InternetPanel = new SessionPanel();
+            InternetPanel = new SessionPanel
+            {
+                TitleLabel = titleLabel,
+                HostLabel = hostLabel,
+                LastDelayLabel = lastDelayLabel,
+                AvgLabel = avgLabel,
+                MaxLabel = maxLabel,
+                MinLabel = minLabel,
+                JitterLabel = jitterLabel,
+                PacketLossLabel = packetLossLabel,
+                LatencyChart = latencyChart,
+                PButton = new PlayButton(playButton),
+                ParentForm = this
+            };
 
-            InternetPanel.TitleLabel = titleLabel;
-            InternetPanel.HostLabel = hostLabel;
-            InternetPanel.LastDelayLabel = lastDelayLabel;
-            InternetPanel.AvgLabel = avgLabel;
-            InternetPanel.MaxLabel = maxLabel;
-            InternetPanel.MinLabel = minLabel;
-            InternetPanel.JitterLabel = jitterLabel;
-            InternetPanel.PacketLossLabel = packetLossLabel;
-            InternetPanel.LatencyChart = latencyChart;
-            InternetPanel.ParentForm = this;
+            InternetPanel.Initialize();
 
             SessionPanels.AddFirst(InternetPanel);
 
-            GatewayPanel = new SessionPanel();
+            GatewayPanel = new SessionPanel
+            {
+                TitleLabel = titleLabel2,
+                HostLabel = hostLabel2,
+                LastDelayLabel = lastDelayLabel2,
+                AvgLabel = avgLabel2,
+                MaxLabel = maxLabel2,
+                MinLabel = minLabel2,
+                JitterLabel = jitterLabel2,
+                PacketLossLabel = packetLossLabel2,
+                LatencyChart = latencyChart2,
+                PButton = new PlayButton(playButton2),
+                ParentForm = this
+            };
 
-            GatewayPanel.TitleLabel = titleLabel2;
-            GatewayPanel.HostLabel = hostLabel2;
-            GatewayPanel.LastDelayLabel = lastDelayLabel2;
-            GatewayPanel.AvgLabel = avgLabel2;
-            GatewayPanel.MaxLabel = maxLabel2;
-            GatewayPanel.MinLabel = minLabel2;
-            GatewayPanel.JitterLabel = jitterLabel2;
-            GatewayPanel.PacketLossLabel = packetLossLabel2;
-            GatewayPanel.LatencyChart = latencyChart2;
-            GatewayPanel.ParentForm = this;
+            GatewayPanel.Initialize();
 
             SessionPanels.AddFirst(GatewayPanel);
 
         }
-
 
         public void UpdateSessionPanel(SessionPanel sessionPanel, PingSession pingSession)
         {
@@ -148,35 +155,7 @@ namespace LazyEye.Views
         }
     }
 
-    /// <summary>
-    /// All the form components that display information about a given sessions's ping
-    /// </summary>
-    public class SessionPanel
-    {
-        public PingMonitor Monitor { get; set; }
 
-        public Label TitleLabel { get; set; }
-        public Label LastDelayLabel { get; set; }
-        public Label HostLabel { get; set; }
-        public Label AvgLabel { get; set; }
-        public Label MaxLabel { get; set; }
-        public Label MinLabel { get; set; }
-        public Label JitterLabel { get; set; }
-        public Label PacketLossLabel { get; set; }
-
-        public Chart LatencyChart { get; set; }
-
-        public DesktopForm ParentForm { get; set; }
-
-
-
-        public void OnPingReceived(object sender, PingReplyReceivedEventArgs eventArgs)
-        {
-
-            ParentForm.UpdateSessionPanel(this, eventArgs.PingSession);
-
-        }
-    }
 
 
 }

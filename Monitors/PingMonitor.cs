@@ -63,6 +63,7 @@ namespace LazyEye.Monitors
 
             thread = new Thread(Run);
             isRunning = true;
+            log.Info("Starting ping monitor to host " + Host);
             thread.Start();
             
         }
@@ -72,7 +73,7 @@ namespace LazyEye.Monitors
         /// </summary>
         public void Stop()
         {
-            log.Debug("Stopping ping monitor to host " + Host);
+            log.Info("Stopping ping monitor to host " + Host);
             isRunning = false;
         }
 
