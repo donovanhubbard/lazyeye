@@ -81,7 +81,7 @@
             // 
             this.lastDelayLabel.AutoSize = true;
             this.lastDelayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastDelayLabel.Location = new System.Drawing.Point(144, 182);
+            this.lastDelayLabel.Location = new System.Drawing.Point(144, 190);
             this.lastDelayLabel.Name = "lastDelayLabel";
             this.lastDelayLabel.Size = new System.Drawing.Size(120, 24);
             this.lastDelayLabel.TabIndex = 0;
@@ -91,7 +91,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(121, 126);
+            this.label1.Location = new System.Drawing.Point(121, 134);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(147, 24);
             this.label1.TabIndex = 1;
@@ -224,7 +224,7 @@
             // 
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(122, 28);
+            this.titleLabel.Location = new System.Drawing.Point(122, 36);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(52, 24);
             this.titleLabel.TabIndex = 12;
@@ -234,7 +234,7 @@
             // 
             this.hostLabel.AutoSize = true;
             this.hostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hostLabel.Location = new System.Drawing.Point(144, 75);
+            this.hostLabel.Location = new System.Drawing.Point(144, 83);
             this.hostLabel.Name = "hostLabel";
             this.hostLabel.Size = new System.Drawing.Size(120, 24);
             this.hostLabel.TabIndex = 13;
@@ -282,7 +282,7 @@
             // 
             this.titleLabel2.AutoSize = true;
             this.titleLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel2.Location = new System.Drawing.Point(122, 28);
+            this.titleLabel2.Location = new System.Drawing.Point(122, 36);
             this.titleLabel2.Name = "titleLabel2";
             this.titleLabel2.Size = new System.Drawing.Size(52, 24);
             this.titleLabel2.TabIndex = 12;
@@ -415,7 +415,7 @@
             // 
             this.hostLabel2.AutoSize = true;
             this.hostLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hostLabel2.Location = new System.Drawing.Point(144, 75);
+            this.hostLabel2.Location = new System.Drawing.Point(144, 83);
             this.hostLabel2.Name = "hostLabel2";
             this.hostLabel2.Size = new System.Drawing.Size(120, 24);
             this.hostLabel2.TabIndex = 13;
@@ -425,7 +425,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.label20.Location = new System.Drawing.Point(121, 126);
+            this.label20.Location = new System.Drawing.Point(121, 133);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(147, 24);
             this.label20.TabIndex = 1;
@@ -435,7 +435,7 @@
             // 
             this.lastDelayLabel2.AutoSize = true;
             this.lastDelayLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastDelayLabel2.Location = new System.Drawing.Point(144, 182);
+            this.lastDelayLabel2.Location = new System.Drawing.Point(144, 190);
             this.lastDelayLabel2.Name = "lastDelayLabel2";
             this.lastDelayLabel2.Size = new System.Drawing.Size(120, 24);
             this.lastDelayLabel2.TabIndex = 0;
