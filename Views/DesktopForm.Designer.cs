@@ -50,6 +50,7 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.hostLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.playButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.titleLabel2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -67,6 +68,7 @@
             this.hostLabel2 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.lastDelayLabel2 = new System.Windows.Forms.Label();
+            this.playButton2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.latencyChart)).BeginInit();
             this.panel1.SuspendLayout();
@@ -79,7 +81,7 @@
             // 
             this.lastDelayLabel.AutoSize = true;
             this.lastDelayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastDelayLabel.Location = new System.Drawing.Point(144, 182);
+            this.lastDelayLabel.Location = new System.Drawing.Point(144, 190);
             this.lastDelayLabel.Name = "lastDelayLabel";
             this.lastDelayLabel.Size = new System.Drawing.Size(120, 24);
             this.lastDelayLabel.TabIndex = 0;
@@ -89,7 +91,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(121, 126);
+            this.label1.Location = new System.Drawing.Point(121, 134);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(147, 24);
             this.label1.TabIndex = 1;
@@ -222,7 +224,7 @@
             // 
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(122, 28);
+            this.titleLabel.Location = new System.Drawing.Point(122, 36);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(52, 24);
             this.titleLabel.TabIndex = 12;
@@ -232,7 +234,7 @@
             // 
             this.hostLabel.AutoSize = true;
             this.hostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hostLabel.Location = new System.Drawing.Point(144, 75);
+            this.hostLabel.Location = new System.Drawing.Point(144, 83);
             this.hostLabel.Name = "hostLabel";
             this.hostLabel.Size = new System.Drawing.Size(120, 24);
             this.hostLabel.TabIndex = 13;
@@ -241,6 +243,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.playButton);
             this.panel1.Controls.Add(this.titleLabel);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.latencyChart);
@@ -252,9 +255,18 @@
             this.panel1.Size = new System.Drawing.Size(803, 261);
             this.panel1.TabIndex = 14;
             // 
+            // playButton
+            // 
+            this.playButton.Location = new System.Drawing.Point(259, 3);
+            this.playButton.Name = "playButton";
+            this.playButton.Size = new System.Drawing.Size(32, 32);
+            this.playButton.TabIndex = 14;
+            this.playButton.UseVisualStyleBackColor = true;
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.playButton2);
             this.panel2.Controls.Add(this.titleLabel2);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.latencyChart2);
@@ -270,7 +282,7 @@
             // 
             this.titleLabel2.AutoSize = true;
             this.titleLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel2.Location = new System.Drawing.Point(122, 28);
+            this.titleLabel2.Location = new System.Drawing.Point(122, 36);
             this.titleLabel2.Name = "titleLabel2";
             this.titleLabel2.Size = new System.Drawing.Size(52, 24);
             this.titleLabel2.TabIndex = 12;
@@ -403,7 +415,7 @@
             // 
             this.hostLabel2.AutoSize = true;
             this.hostLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hostLabel2.Location = new System.Drawing.Point(144, 75);
+            this.hostLabel2.Location = new System.Drawing.Point(144, 83);
             this.hostLabel2.Name = "hostLabel2";
             this.hostLabel2.Size = new System.Drawing.Size(120, 24);
             this.hostLabel2.TabIndex = 13;
@@ -413,7 +425,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.label20.Location = new System.Drawing.Point(121, 126);
+            this.label20.Location = new System.Drawing.Point(121, 133);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(147, 24);
             this.label20.TabIndex = 1;
@@ -423,11 +435,19 @@
             // 
             this.lastDelayLabel2.AutoSize = true;
             this.lastDelayLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastDelayLabel2.Location = new System.Drawing.Point(144, 182);
+            this.lastDelayLabel2.Location = new System.Drawing.Point(144, 190);
             this.lastDelayLabel2.Name = "lastDelayLabel2";
             this.lastDelayLabel2.Size = new System.Drawing.Size(120, 24);
             this.lastDelayLabel2.TabIndex = 0;
             this.lastDelayLabel2.Text = "initializing...";
+            // 
+            // playButton2
+            // 
+            this.playButton2.Location = new System.Drawing.Point(259, 6);
+            this.playButton2.Name = "playButton2";
+            this.playButton2.Size = new System.Drawing.Size(32, 32);
+            this.playButton2.TabIndex = 15;
+            this.playButton2.UseVisualStyleBackColor = true;
             // 
             // DesktopForm
             // 
@@ -491,6 +511,8 @@
         private System.Windows.Forms.Label hostLabel2;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label lastDelayLabel2;
+        private System.Windows.Forms.Button playButton;
+        private System.Windows.Forms.Button playButton2;
     }
 }
 
