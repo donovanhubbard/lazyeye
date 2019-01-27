@@ -73,6 +73,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Views\DesktopForm.resx">
       <DependentUpon>DesktopForm.cs</DependentUpon>
@@ -96,6 +97,9 @@
   <ItemGroup>
     <Content Include="64px-Eye-Black.ico" />
     <Content Include="black-eye.ico" />
+    <None Include="Resources\PauseIcon.png" />
+    <None Include="Resources\pause-icon.png" />
+    <None Include="Resources\play-icon.png" />
     <Content Include="Resources\play.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

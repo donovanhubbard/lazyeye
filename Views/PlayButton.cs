@@ -41,15 +41,12 @@ namespace LazyEye.Views
 
         public PlayButton(Button button)
         {
-            //TODO switch to resources
-            PlayImage = Image.FromFile(@"F:\Users\donovan\My Documents\Code\lazyeye\Resources\play-icon.png");
-            PauseImage = Image.FromFile(@"F:\Users\donovan\My Documents\Code\lazyeye\Resources\pause-icon.png");
+            PlayImage = Properties.Resources.play_icon;
+            PauseImage = Properties.Resources.pause_icon;
 
             ButtonObj = button;
             ChangeMode(PlayMode.Play);
             button.Click += OnClickHandler;
-
-            
         }
 
 
